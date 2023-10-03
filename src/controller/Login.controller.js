@@ -26,9 +26,8 @@ const createUserController = async (req, res) => {
       .json({ message: 'User already registered' });
   }
   const newUser = await createUser(displayName, email, password, image);
-  const payload = { id: newUser.dataValues.id, email: newUser.dataValues.email };
-  const token = generateToken(payload);
-  res.status(201).json(token);
+  const token = generateToken(newUser);
+  res.status(201).json({ token });
 };
 
 module.exports = {

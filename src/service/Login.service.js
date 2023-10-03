@@ -10,6 +10,7 @@ const getUser = async (email, password) => {
 
 const createUser = async (displayName, email, password, image) => {
   const user = await User.create({ displayName, email, password, image });
+  console.log(user.dataValues);
   return user.dataValues;
 };
 
