@@ -8,10 +8,20 @@ const createUser = async (displayName, email, password, image) => {
 
 const getAllUsers = async () => {
   const users = await User.findAll();
-  return users;
+  const usersWithoutPassword = users.map((user) => {
+    const { password, ...userWithoutPassword } = user.dataValues;
+    return userWithoutPassword;
+  });
+  return usersWithoutPassword;
+};
+
+const getUserById = async (id) => {
+  const user = await User.findByPk(id);
+  return user;
 };
 
 module.exports = {
   createUser,
   getAllUsers,
+  getUserById,
 };
