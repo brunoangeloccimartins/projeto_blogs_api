@@ -8,12 +8,7 @@ const getUser = async (email, password) => {
   return user;
 };
 
-const createUser = async (displayName, email, password, image) => {
-  const user = await User.create({ displayName, email, password, image });
-  console.log(user.dataValues);
-  return user.dataValues;
-};
-
 module.exports = {
-  getUser, createUser,
+  getUser,
+  
 };
