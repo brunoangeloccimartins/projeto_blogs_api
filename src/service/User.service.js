@@ -17,6 +17,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   const user = await User.findByPk(id);
+  if (!user) return null;
   const noPassUser = {
     id: user.dataValues.id,
     displayName: user.dataValues.displayName,
