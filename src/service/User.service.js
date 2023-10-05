@@ -17,7 +17,13 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   const user = await User.findByPk(id);
-  return user;
+  const noPassUser = {
+    id: user.dataValues.id,
+    displayName: user.dataValues.displayName,
+    email: user.dataValues.email,
+    image: user.dataValues.image,
+  };
+  return noPassUser;
 };
 
 module.exports = {
