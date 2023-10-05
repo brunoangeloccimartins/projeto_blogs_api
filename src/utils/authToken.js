@@ -16,7 +16,7 @@ const validateToken = (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) return res.status(401).json({ message: 'Token not found' });
   const splitToken = token.split(' ');
-  if (!splitToken[1]) return res.status(401).json({ message: 'Token not found' });
+  if (!splitToken[1]) return res.status(401).json({ message: 'Expired or invalid token' });
   try {
     const decoded = verifyToken(splitToken[1]);
     req.user = decoded;
