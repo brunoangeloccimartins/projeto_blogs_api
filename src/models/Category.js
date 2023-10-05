@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
       tableName: 'categories',
     });
-    // Category.associate = function(models) {
-    //   Category.hasMany(models.BlogPost, {
-    //     as: 'posts',
-    //     foreignKey: 'categoryId',
-    //   });
-    // };
+    Category.associate = function(models) {
+      Category.hasMany(models.BlogPost, {
+        as: 'posts',
+        foreignKey: 'categoryId',
+      });
+    };
   return Category;
 }
