@@ -7,7 +7,7 @@ const userValidation = require('./middlewares/user.validation');
 const { validateToken } = require('./utils/authToken');
 const { createCategoryController,
   getAllCategoriesController } = require('./controller/Categories.controller');
-const { createPostController } = require('./controller/Post.controller');
+const { createPostController, getAllPostsController } = require('./controller/Post.controller');
 const { postValidation } = require('./middlewares/post.validation');
 const { categoryValidation } = require('./middlewares/category.validation');
 
@@ -29,6 +29,7 @@ app.get('/user/:id', validateToken, getUserByIdController);
 app.post('/categories', validateToken, createCategoryController);
 app.get('/categories', validateToken, getAllCategoriesController);
 app.post('/post', validateToken, categoryValidation, postValidation, createPostController);
+app.get('/post', validateToken, getAllPostsController);
 
 // ...
 
