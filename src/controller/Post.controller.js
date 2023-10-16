@@ -3,9 +3,10 @@ const { createPost } = require('../service/Post.service');
 
 const createPostController = async (req, res) => {
   const { title, content, categoryIds } = req.body;
-  const post = await createPost(title, content, categoryIds);
+  const userId = req.user.id;
+  console.log(userId);
+  const post = await createPost(title, content, categoryIds, userId);
   const postId = post.id;
-  console.log(postId);
   await create(postId, categoryIds);
   return res.status(201).json(post);
 };
