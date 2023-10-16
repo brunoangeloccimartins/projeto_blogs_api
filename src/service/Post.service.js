@@ -36,8 +36,7 @@ const getById = async (id) => {
       as: 'user',
       attributes: { exclude: ['password'] },
     },
-    {
-      model: Category,
+    { model: Category,
       as: 'categories',
       through: { attributes: [] },
     },
