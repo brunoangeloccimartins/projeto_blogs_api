@@ -45,10 +45,10 @@ const getById = async (id) => {
   return post;
 };
 
-const updatePost = async (id, title, content, categoryIds) => {
+const updatePost = async (id, title, content) => {
   const updatedCount = await BlogPost.update({ title, content }, { where: { id } });
 
-  if (updatedCount && categoryIds) {
+  if (updatedCount) {
     return BlogPost.findByPk(id, {
       include: [{ model: User,
         as: 'user',

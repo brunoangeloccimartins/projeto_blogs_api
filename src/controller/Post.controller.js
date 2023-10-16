@@ -26,9 +26,9 @@ const getByIdController = async (req, res) => {
 
 const updatePostController = async (req, res) => {
   const { id } = req.params;
-  const { title, content, categoryIds } = req.body;
+  const { title, content } = req.body;
   const userId = req.user.id;
-  const post = await updatePost(id, title, content, categoryIds, userId);
+  const post = await updatePost(id, title, content, userId);
   if (!post) return res.status(404).json({ message: 'Post does not exist' });
   return res.status(200).json(post);
 };
