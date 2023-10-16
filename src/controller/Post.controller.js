@@ -13,6 +13,7 @@ const createPostController = async (req, res) => {
 
 const getAllPostsController = async (_req, res) => {
   const posts = await getAll();
+  console.log(posts);
   return res.status(200).json(posts);
 };
 
