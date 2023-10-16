@@ -18,6 +18,11 @@ const getAll = async () => {
   return posts;
 };
 
+const getById = async (id) => {
+  const post = await BlogPost.findByPk(id);
+  return post;
+};
+
 module.exports = {
-  create, createPost, getAll,
+  create, createPost, getAll, getById,
 };

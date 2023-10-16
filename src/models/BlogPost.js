@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       published: {type:DataTypes.DATE,
       defaultValue: DataTypes.NOW},
       updated: {type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW}
+      defaultValue: DataTypes.NOW},
     }
       , {
       timestamps: false,
@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'blog_posts',
     });
     BlogPost.associate = (models) => {
-      BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+     BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
     };
+    
   return BlogPost;
 };
