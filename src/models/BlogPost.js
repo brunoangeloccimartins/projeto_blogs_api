@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true},
       title: DataTypes.STRING,
       content: DataTypes.STRING,
-      userId: { type: DataTypes.INTEGER, foreignKey: true, defaultValue: 1 },
+      userId: { type: DataTypes.INTEGER, foreignKey: true },
       published: {type:DataTypes.DATE,
       defaultValue: DataTypes.NOW},
       updated: {type: DataTypes.DATE,
