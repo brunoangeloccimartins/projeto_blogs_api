@@ -8,7 +8,8 @@ const { validateToken } = require('./utils/authToken');
 const { createCategoryController,
   getAllCategoriesController } = require('./controller/Categories.controller');
 const { createPostController, getAllPostsController,
-  getByIdController } = require('./controller/Post.controller');
+  getByIdController, 
+  updatePostController } = require('./controller/Post.controller');
 const { postValidation } = require('./middlewares/post.validation');
 const { categoryValidation } = require('./middlewares/category.validation');
 
@@ -29,6 +30,7 @@ app.get('/user', validateToken, getAllUsersController);
 app.get('/user/:id', validateToken, getUserByIdController);
 app.post('/categories', validateToken, createCategoryController);
 app.get('/categories', validateToken, getAllCategoriesController);
+app.put('/post/:id', validateToken, categoryValidation, postValidation, updatePostController);
 app.post('/post', validateToken, categoryValidation, postValidation, createPostController);
 app.get('/post', validateToken, getAllPostsController);
 app.get('/post/:id', validateToken, getByIdController);

@@ -45,6 +45,23 @@ const getById = async (id) => {
   return post;
 };
 
+const updatePost = async (id, title, content, categoryIds) => {
+  const updatedCount = await BlogPost.update({ title, content }, { where: { id } });
+
+  if (updatedCount && categoryIds) {
+    return BlogPost.findByPk(id, {
+      include: [{ model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] } },
+      { model: Category,
+        as: 'categories',
+        through: { attributes: [] } }],
+    });
+  }
+
+  return null;
+};
+
 module.exports = {
-  create, createPost, getAll, getById,
+  create, createPost, getAll, getById, updatePost,
 };
