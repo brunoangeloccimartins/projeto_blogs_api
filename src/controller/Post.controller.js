@@ -1,4 +1,4 @@
-const { create, getAll, getById, updatePost } = require('../service/Post.service');
+const { create, getAll, getById, updatePost, deletePost } = require('../service/Post.service');
 const { createPost } = require('../service/Post.service');
 
 const createPostController = async (req, res) => {
@@ -33,6 +33,18 @@ const updatePostController = async (req, res) => {
   return res.status(200).json(post);
 };
 
+const deletePostController = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+  const post = await deletePost(id, userId);
+  if (!post) return res.status(404).json({ message: 'Post does not exist' });
+  return res.status(204).end();
+};
+
 module.exports = {
-  createPostController, getAllPostsController, getByIdController, updatePostController,
+  createPostController,
+  getAllPostsController,
+  getByIdController,
+  updatePostController,
+  deletePostController,
 };

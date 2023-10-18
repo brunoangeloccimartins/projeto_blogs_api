@@ -9,10 +9,12 @@ const { createCategoryController,
   getAllCategoriesController } = require('./controller/Categories.controller');
 const { createPostController, getAllPostsController,
   getByIdController, 
-  updatePostController } = require('./controller/Post.controller');
+  updatePostController, 
+  deletePostController } = require('./controller/Post.controller');
 const { postValidation } = require('./middlewares/post.validation');
 const { categoryValidation } = require('./middlewares/category.validation');
 const { updateValidation } = require('./middlewares/update.validation');
+const { deleteValidation } = require('./middlewares/delete.validation');
 
 // ...
 
@@ -35,6 +37,7 @@ app.post('/post', validateToken, categoryValidation, postValidation, createPostC
 app.get('/post', validateToken, getAllPostsController);
 app.get('/post/:id', validateToken, getByIdController);
 app.put('/post/:id', validateToken, updateValidation, updatePostController);
+app.delete('/post/:id', validateToken, deleteValidation, deletePostController);
 
 // ...
 
