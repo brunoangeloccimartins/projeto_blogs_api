@@ -19,6 +19,7 @@ const validateToken = (req, res, next) => {
   if (!splitToken[1]) return res.status(401).json({ message: 'Expired or invalid token' });
   try {
     const decoded = verifyToken(splitToken[1]);
+    console.log(decoded);
     req.user = decoded;
     next();
   } catch (err) {

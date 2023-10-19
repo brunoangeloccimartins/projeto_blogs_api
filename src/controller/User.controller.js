@@ -1,4 +1,4 @@
-const { createUser, getAllUsers, getUserById } = require('../service/User.service');
+const { createUser, getAllUsers, getUserById, deleteUserById } = require('../service/User.service');
 const { generateToken } = require('../utils/authToken');
 const { getUser } = require('../service/Login.service');
 
@@ -28,8 +28,18 @@ const getUserByIdController = async (req, res) => {
   res.status(200).json(user);
 };
 
+const deleteUserByIdController = async (req, res) => {
+  const UserId = req.user.id;
+  const user = await deleteUserById(UserId);
+  if (!user) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
+  res.status(204).end();
+};
+
 module.exports = {
   createUserController,
   getAllUsersController,
   getUserByIdController,
+  deleteUserByIdController,
 };

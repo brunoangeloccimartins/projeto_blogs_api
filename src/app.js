@@ -2,7 +2,8 @@ const express = require('express');
 const { loginController } = require('./controller/Login.controller');
 const { createUserController,
   getAllUsersController,
-  getUserByIdController } = require('./controller/User.controller');
+  getUserByIdController, 
+  deleteUserByIdController } = require('./controller/User.controller');
 const userValidation = require('./middlewares/user.validation');
 const { validateToken } = require('./utils/authToken');
 const { createCategoryController,
@@ -38,6 +39,7 @@ app.get('/post', validateToken, getAllPostsController);
 app.get('/post/:id', validateToken, getByIdController);
 app.put('/post/:id', validateToken, updateValidation, updatePostController);
 app.delete('/post/:id', validateToken, deleteValidation, deletePostController);
+app.delete('/user/me', validateToken, deleteUserByIdController);
 
 // ...
 

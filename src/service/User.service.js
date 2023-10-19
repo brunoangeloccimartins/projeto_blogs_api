@@ -27,8 +27,16 @@ const getUserById = async (id) => {
   return noPassUser;
 };
 
+const deleteUserById = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) return null;
+  await User.destroy({ where: { id } });
+  return user;
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  deleteUserById,
 };
